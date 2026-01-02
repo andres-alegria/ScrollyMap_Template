@@ -36,12 +36,40 @@ const Map = (props) => {
   useHandleResize(updateViewport);
 
   // Set map when loaded
-  useEffect(() => {
-    if (loaded && mapRef.current) {
-      setMap(mapRef.current.getMap());
-    }
-    return undefined;
-  }, [mapRef, loaded, setMap]);
+ useEffect(() => {
+  if (loaded && mapRef.current) {
+    const m = mapRef.current.getMap();
+    setMap(m);
+    // Expose globally so the legend can read paint props
+    if (typeof window !== 'undefined') {
+  window.__MAP__ = m;
+  window.map = m; // ← ADD THIS LINE
+
+  // Keep the reference fresh if the style changes
+  m.on('styledata', () => {
+    window.__MAP__ = m;
+    window.map = m; // ← keep it fresh on style changes too
+  });
+}
+
+
+  }
+  return undefined;
+}, [mapRef, loaded, setMap]);
+
+useEffect(() => {
+  if (!loaded || !map) return;
+
+  const chapter =
+    typeof currentChapterId === 'string'
+      ? chapters.find(c => c.id === currentChapterId)
+      : currentChapterId;
+
+  if (chapter?.callback && typeof window[chapter.callback] === 'function') {
+    window[chapter.callback](); // run your multi-step camera sequence
+  }
+}, [loaded, map, currentChapterId, chapters]);
+
 
   useScrollFunctionality({
     loaded,

@@ -5,6 +5,67 @@ import { useTranslation } from 'react-i18next';
 import { Waypoint } from 'react-waypoint';
 import LegendIcon from '../icons/legend-icon';
 
+// Resolve legend entry from a live Mapbox layer if `fromLayer` is provided
+const resolveLegendItem = (l) => {
+  const map = typeof window !== 'undefined' ? window.__MAP__ : undefined;
+  if (!map || !l?.fromLayer) return l;
+
+  const layer = map.getLayer(l.fromLayer);
+  if (!layer) return l;
+
+  const get = (prop) => {
+    try { return map.getPaintProperty(l.fromLayer, prop); } catch { return undefined; }
+  };
+
+  if (layer.type === 'line') {
+    return {
+      ...l,
+      symbol: 'line',
+      color: get('line-color') ?? l.color ?? '#000',
+      width: get('line-width') ?? l.width ?? 3,
+      dasharray: get('line-dasharray') ?? l.dasharray,
+    };
+  }
+  if (layer.type === 'fill') {
+    return {
+      ...l,
+      symbol: 'fill',
+      color: get('fill-color') ?? l.color ?? '#000',
+      border: get('fill-outline-color') ?? l.border,
+    };
+  }
+  if (layer.type === 'circle') {
+    return {
+      ...l,
+      symbol: 'circle',
+      color: get('circle-color') ?? l.color ?? '#000',
+      width: get('circle-radius') ?? l.width ?? 6,
+    };
+  }
+  return l;
+};
+
+
+const getPatternStyles = (l) => {
+  if (!l.pattern) return { backgroundColor: l.color };
+
+  // Allow both object or flat fields
+  const p = typeof l.pattern === 'object' ? l.pattern : {};
+  const angle     = p.angle     ?? l.patternAngle     ?? 45; // deg
+  const thickness = p.thickness ?? l.patternThickness ?? 3;  // px
+  const gap       = p.gap       ?? l.patternGap       ?? 6;  // px
+  const bg        = p.bg        ?? l.patternBg        ?? 'transparent'; // <- background color
+  const t = Math.max(1, Number(thickness));
+  const g = Math.max(1, Number(gap));
+
+  return {
+    // base fill under the stripes
+    backgroundColor: bg,
+    // stripes on top
+    backgroundImage: `repeating-linear-gradient(${angle}deg, ${l.color} 0 ${t}px, transparent ${t}px ${t+g}px)`,
+  };
+};
+
 const ALIGNMENTS = {
   left: 'w-full lg:w-1/3 m-left-chapter',
   fully: 'w-full lg:w-1/2 mx-auto',
@@ -24,6 +85,7 @@ function Chapter({
   alignment,
   setCurrentChapter,
   setCurrentAction,
+   pinned,
 }) {
   const { t } = useTranslation();
 
@@ -50,31 +112,41 @@ function Chapter({
     </figure>
   );
 
-  const renderLegend = (legend, sources) => (
-    <div className="text-base leading-6">
-      {legend.map((l) => (
+ const renderLegend = (legend, sources) => (
+  <div className="text-base leading-6">
+    {(legend ?? []).map((raw) => {
+      const l = resolveLegendItem(raw);
+      return (
         <div key={l.title} className="flex items-center gap-4 mb-4">
           {l.icon ? (
             <LegendIcon icon={l.icon} />
+          ) : l.symbol === 'line' ? (
+            <svg width="28" height="16" aria-hidden="true" style={{ marginRight: 16 }} role="img" aria-label={t(l.title)}>
+              <line
+                x1="0" y1="8" x2="28" y2="8"
+                stroke={l.color}
+                strokeWidth={l.width ?? 3}
+                strokeDasharray={Array.isArray(l.dasharray) ? l.dasharray.join(' ') : undefined}
+                strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
+              />
+            </svg>
           ) : (
             <span
               className="legendItem w-8 h-8 mr-4"
               style={{
-                backgroundColor: l.color,
+                ...getPatternStyles(l),
                 border: l.border ? `solid 2px ${l.border}` : 'none',
               }}
             />
           )}
           <span>{t(l.title)}</span>
         </div>
-      ))}
-      {sources && (
-        <div className="ml-12">
-          {t('Sources')}: {t(sources)}
-        </div>
-      )}
-    </div>
-  );
+      );
+    })}
+    {sources && <div className="ml-12">{t('Sources')}: {t(sources)}</div>}
+  </div>
+);
 
   const onEnter = () => {
     setCurrentChapter(id);
@@ -98,13 +170,19 @@ function Chapter({
         topOffset="-20%"
         bottomOffset="40%"
       />
-      <div ref={chapterRef} className={cx(theme, 'rounded-lg p-6 space-y-4', extraHeight)}>
+      <div ref={chapterRef} className={cx(theme, 'rounded-lg p-6 space-y-4', pinned && 'lg:sticky lg:top-[10vh] z-10', extraHeight)}>
         {images &&
           images.filter((i) => i.position === 'top').map((i) => renderImage(i))}
         {title && (
           <div className="text-base leading-6">
             {title && <h3 className="font-lora text-2xl leading-8 pb-4">{t(title)}</h3>}
-            {description && <p className="text-base leading-6">{t(description)}</p>}
+
+{description && (
+  <p
+    className="text-base leading-6"
+    dangerouslySetInnerHTML={{ __html: t(description) }}
+  />
+)}
           </div>
         )}
         {legend && renderLegend(legend, sources)}

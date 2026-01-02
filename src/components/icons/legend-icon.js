@@ -1,20 +1,15 @@
 import React from 'react';
 import cx from 'classnames';
-import CocaIcon from './coca';
-import PlaneIcon from './plane';
+import PipelineIcon from './pipeline';
 
 const LegendIcon = ({ icon }) => {
   let Component = null;
   let classList = '';
 
   switch (icon) {
-    case 'plane':
+    case 'pipeline':
       classList = 'border-0.75 border-primary text-primary';
-      Component = <PlaneIcon />;
-      break;
-    case 'coca':
-      classList = 'text-white bg-mongazon';
-      Component = <CocaIcon />;
+      Component = <PipelineIcon />;
       break;
     default:
       console.warn(`Unsupported icon:`, icon);

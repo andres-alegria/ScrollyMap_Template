@@ -1,25 +1,26 @@
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = process.env;
 
 export default {
-  style: 'mapbox://styles/mongabay/cmdyt9fxl005a01qzb0d4das5',
+  style: 'mapbox://styles/mongabay/cmht5r4ew000l01s2axp92n6s',
   accessToken: REACT_APP_MAPBOX_ACCESS_TOKEN,
+
   showMarkers: false,
   theme: 'mongabay',
   intro: {
-    title: 'M-Sand',
+    title: 'Shifting Sands',
     subtitle:
-      'When one ban triggers another crisis: how Kerala’s river sand mining ban is leading to more quarrying in the Western Ghats.',
-    date: 'Sept. 05 2025',
+      'Kerala’s 2016 ban on river sand mining was meant to save its waterways and lifelines. However, it had an unintended consequence.',
+    date: 'November 11, 2025',
     social: [
       {
-        name: 'twitter',
-        src: 'twitter.svg',
-        href: 'https://x.com/MongabayIndia',
+        name: 'X',
+        src: 'x.svg',
+        href: 'https://x.com/mongabayindia',
       },
       {
         name: 'facebook',
         src: 'facebook.svg',
-        href: 'https://www.facebook.com/MongabayIndia/',
+        href: 'https://www.facebook.com/mongabayindia/',
       },
     ],
   },
@@ -30,478 +31,1540 @@ export default {
       width: '140',
       href: 'https://india.mongabay.com',
     },
-    {
-      name: 'vizzuality',
-      src: 'vizzualitylogo.png',
-      width: '100',
-      href: 'https://vizzuality.com',
-    },
   ],
   alignment: 'left',
-  footer: 'Cartography by Andrés Alegría for Mongabay.',
+  footer: 'Produced by Kartik Chandramouli | Cartography by Andrés Alegría | Copy edits by Divya Kilikar | Banner image by AP Photo',
+ 
   chapters: [
+    
+    // chapter 00
     {
-      id: 'first chapter',
+      id: 'chapter 0',
       alignment: 'left',
       hidden: false,
-      title: 'Placeholder text',
-      description:
-        'Placeholder text.',
-      legend: [
-        {
-          title: 'Placeholder text',
-          icon: 'plane',
-        },
-      ],
-      sources:
-        "Placeholder text.",
-      location: {
-        center: [77.20, 10.75],
-        zoom: 6.5,
-        pitch: 30.0,
-        bearing: 60,
+      title: ' ',
+      description: "The construction industry is Kerala’s largest consumer of river sand. Rampant sand mining led to falling groundwater levels, disrupted stream flows, and weakened bridges. <b>In June 2015, the Kerala government banned sand mining</b> in 6 rivers and restricted it in 5 others.",
+        location: {
+        center: [75.126410, 12.462606],
+        zoom: 11.2,
+        pitch: 66,
+        bearing: 63.2,
       },
-      mapAnimation: 'flyTo',
-      rotateAnimation: false,
-      callback: '',
-      onChapterEnter: [
+      
+       images: [
         {
-          layer: 'peruvian-amazon-20241002t1750-dlalbv copy',
-          opacity: 0.5,
-        },
-        {
-          layer: 'airstrips-10224-dozgmq',
-          opacity: 1,
-        },
-        {
-          layer: 'concesiones-forestales-10-432-dulhn7 copy 2',
-          opacity: 0,
-        },
-        {
-          layer: 'concesiones-forestales-10-432-dulhn7 copy 1',
-          opacity: 0,
-        },
-        {
-          layer: 'coca-crops-density-20241002t1-55l40t',
-          opacity: 0,
-        },
-      ],
-      onChapterExit: [
-        {
-          layer: 'peruvian-amazon-20241002t1750-dlalbv copy',
-          opacity: 0,
-        },
-      ],
-    },
-    {
-      id: 'second-chapter',
-      alignment: 'right',
-      hidden: false,
-      title: 'Placeholder text',
-      images: [
-        {
-          src: 'Photo1.jpg',
+          src: 'photo0.jpg',
           position: 'top',
-          title: 'Placeholder text',
-          author: 'Placeholder text',
+          title: 'Chandragiri River',
         },
       ],
-      description:
-        'Placeholder text.',
-      legend: [
-        {
-          title: 'Placeholder text',
-          icon: 'coca',
-        },
-      ],
-      sources: "Placeholder text",
-      location: {
-        center: [77.20, 10.75],
-        zoom: 6.5,
-        pitch: 40.0,
-        bearing: 60,
-      },
-      mapAnimation: 'flyTo',
-      rotateAnimation: false,
-      callback: '',
+      mapAnimation: 'easeTo',
       onChapterEnter: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
         {
-          layer: 'coca-crops-density-20241002t1-55l40t',
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
           opacity: 1,
         },
         {
-          layer: 'airstrips-10224-dozgmq',
+          layer: 'admin-0-boundary-disputed',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
+        },
+      ],
+        onChapterExit: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+            {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
           opacity: 1,
         },
         {
-          layer: 'territorios-indigenas-0lu5ni copy',
+          layer: 'admin-0-boundary-disputed',
           opacity: 0,
         },
-      ],
-      onChapterExit: [
         {
-          layer: 'coca-crops-density-20241002t1-55l40t',
+          layer: 'admin-0-boundary-a',
           opacity: 0,
         },
-      ],
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
+        },
+        ],
     },
+
+
+    // chapter 1
     {
-      id: 'third-chapter',
-      alignment: 'fully',
-      hidden: false,
-      title: 'Placeholder text',
-      description:
-          'Placeholder text.',
-      legend: [
-        {
-          title: 'Placeholder text',
-          color: '#de6363',
-          pattern: 'LINEPATTERN',
-        },
-      ],
-      sources: 'Placeholder text',
-      location: {
-        center: [77.20, 10.75],
-        zoom: 6.5,
-        pitch: 20.0,
-        bearing: 60,
-      },
-      mapAnimation: 'flyTo',
-      rotateAnimation: false,
-      callback: '',
-      onChapterEnter: [
-        {
-          layer: 'territorios-indigenas-0lu5ni copy',
-          opacity: 1,
-        },
-        {
-          layer: 'concesiones-forestales-10-432-dulhn7 copy 2',
-          opacity: 0,
-        },
-        {
-          layer: 'concesiones-forestales-10-432-dulhn7 copy 1',
-          opacity: 0,
-        },
-      ],
-      onChapterExit: [
-        {
-          layer: 'territorios-indigenas-0lu5ni copy',
-          opacity: 0.75,
-        },
-      ],
-    },
-    {
-      id: 'fourth-chapter',
-      alignment: 'fully',
-      hidden: false,
-      title: 'Placeholder text',
-      images: [
-        {
-          src: 'Photo1.jpg',
-          position: 'top',
-          title: 'Placeholder text',
-          author: 'Placeholder text',
-        },
-      ],
-      description:
-        'Placeholder text.',
-      legend: [
-        {
-          title: 'Placeholder text',
-          color: '#ccefb8',
-        },
-      ],
-      sources: 'Placeholder text',
-      location: {
-        center: [77.20, 10.75],
-        zoom: 7.5,
-        pitch: 30.0,
-        bearing: 60,
-      },
-      mapAnimation: 'flyTo',
-      rotateAnimation: false,
-      callback: '',
-      onChapterEnter: [
-        {
-          layer: 'deforestationthreeregions-dcthbg',
-          opacity: 1,
-        },
-        {
-          layer: 'coca-crops-density-20241002t1-55l40t',
-          opacity: 0.5,
-        },
-      ],
-      onChapterExit: [],
-    },
-    {
-      id: 'fifth-chapter',
-      alignment: 'fully',
-      hidden: false,
-      title: 'Placeholder text',
-      description:
-        'Placeholder text.',
-      location: {
-        center: [77.20, 10.75],
-        zoom: 6.5,
-        pitch: 60.0,
-        bearing: 50,
-      },
-      mapAnimation: 'flyTo',
-      rotateAnimation: false,
-      callback: '',
-      onChapterEnter: [
-        {
-          layer: 'deforestationthreeregions-dcthbg',
-          opacity: 1,
-        },
-        {
-          layer: 'coca-crops-density-20241002t1-55l40t',
-          opacity: .5,
-        },
-      ],
-      onChapterExit: [
-        {
-          layer: 'coca-crops-density-20241002t1-55l40t',
-          opacity: 0,
-        },
-      ],
-    },
-    {
-      id: 'sixth-chapter',
+      id: 'chapter 1',
       alignment: 'left',
       hidden: false,
-      title: 'Placeholder text',
-      images: [
+      title: ' ',
+      description: "After the ban on river sand mining, miners turned to the hills of the Western Ghats, crushing quarried hard rock to produce manufactured sand, also known as <b>m-sand</b>. It is considered a sustainable alternative to natural sand.",
+       legend: [
         {
-          src: 'Photo1.jpg',
-          position: 'top',
-          title: 'Placeholder text',
-          author: 'Placeholder text',
+          title: 'Western Ghats',
+          border: '#c48399',
+        },
+        {
+          title: 'Kerala state',
+          fromLayer: 'kerala-solid',
         },
       ],
-      description:
-        'Placeholder text.',
       location: {
-        center: [77.20, 10.75],
-        zoom: 6.5,
-        pitch: 30.0,
-        bearing: 50,
+        center: [75.75, 10.75],
+        zoom: 6.25,
+        pitch: 25,
+        bearing: 0,
       },
+      
       mapAnimation: 'flyTo',
       rotateAnimation: false,
-      callback: '',
       onChapterEnter: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
         {
-          layer: 'deforestationthreeregions-dcthbg',
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.8,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
           opacity: 1,
         },
         {
-          layer: 'territorios-indigenas-0lu5ni copy',
+          layer: 'admin-0-boundary-a',
           opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 1,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
         },
       ],
-      onChapterExit: [],
+        onChapterExit: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+          {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.8,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 1,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 1,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
+        },
+        ],
     },
+
+
+    // chapter 2
     {
-      id: 'seventh-chapter',
-      alignment: 'right',
+      id: 'chapter 2',
+      alignment: 'left',
       hidden: false,
-      title: 'Placeholder text',
-      images: [
+      title: ' ',
+      description: "72 legal quarries lie within 10 km of 20 protected areas in the Western Ghats, one of the world’s most biodiverse regions. <b>Most expanded after the ban</b>.",
+             legend: [
         {
-          src: 'Photo1.jpg',
+          title: 'Legal sand quarries',
+          fromLayer: 'Kerela_quarries',
+        },
+        {
+          title: 'Protected Areas',
+          fromLayer: 'Kerela_PAs',
+        },
+         ],
+      sources: 'Ashok L, et al. (2025)',
+      
+ location: {
+        center: [75.75, 10.25],
+        zoom: 6.75,
+        pitch: 25,
+        bearing: 0,
+      },
+       images: [
+        {
+          src: 'photo2.jpg',
           position: 'top',
-          title: 'APlaceholder text',
-          author: 'Placeholder text',
+          title: 'Mountains of Western Ghats',
+          author: '',
+        },
+           ],
+        mapAnimation: 'easeTo',
+      rotateAnimation: false,
+      onChapterEnter: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+          {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.2,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 1,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0.75,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 1,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
         },
       ],
-      description:
-        'Placeholder text.',
-      location: {
-        center: [77.20, 10.75],
-        zoom: 4.5,
-        pitch: 30.0,
+        onChapterExit: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+           {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.2,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 1,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0.75,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 1,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
+        },
+      ],
+    
+    },
+
+
+    // chapter 3a
+    {
+      id: 'chapter 3a',
+      alignment: 'left',
+      hidden: false,
+      title: ' ',
+      description: "<b>Malabar Wildlife Sanctuary</b> has the highest number of quarries —15— within its 10 km buffer zone.",
+             legend: [
+        {
+          title: 'Legal sand quarries',
+          fromLayer: 'Kerela_quarries',
+        },
+           {
+          title: 'Protected Areas',
+          fromLayer: 'Kerela_PAs',
+        },
+         ],
+         images: [
+        {
+          src: 'photo5.jpg',
+          position: 'top',
+          title: 'Malabar Trogon',
+          author: '',
+        },
+               ],
+        location: {
+        center: [75.90, 11.60],
+        zoom: 10.25,
+        pitch: 70.0,
         bearing: 60,
       },
       mapAnimation: 'flyTo',
       rotateAnimation: false,
-      callback: '',
       onChapterEnter: [
-        {
-          layer: 'deforestationthreeregions-dcthbg',
-          opacity: 1,
-        },
-        {
-          layer: 'territorios-indigenas-0lu5ni copy',
-          opacity: 1,
-        },
-        {
-          layer: 'concesiones-forestales-10-432-dulhn7 copy 2',
+              {
+          layer: 'OneQuarries',
           opacity: 0,
-        }
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs_Text',
+          opacity: 1,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.2,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 1,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0.75,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 1,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
+        },
       ],
       onChapterExit: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
         {
-          layer: 'territorios-indigenas-0lu5ni copy',
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+           {
+          layer: 'Kerela_PAs_Text',
+          opacity: 1,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.2,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 1,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0.75,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 1,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
           opacity: 0,
         },
       ],
+    
     },
+    
+    
+   
+     // chapter 3b
     {
-      id: 'eighth-chapter',
-      alignment: 'fully',
+      id: 'chapter 3b',
+      alignment: 'left',
       hidden: false,
-      title: 'Placeholder text',
-      images: [
+      title: ' ',
+      description: "Located at less than 3 km from the <b>Malabar Wildlife Sanctuary</b>, this quarry expanded from about 13.6 ha in 2016, to more than 19 ha in 2021, making it one of the largest legal sand quarries in Kerala.",
+        location: {
+        center: [75.816, 11.635],
+        zoom: 13.55,
+        pitch: 50,
+        bearing: 35,
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      onChapterEnter: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
         {
-          src: 'Photo1.jpg',
-          position: 'top',
-          title: 'Placeholder text',
-          author: 'Placeholder text',
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 1,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0.2,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
         },
       ],
-      description:
-        'Placeholder text.',
+      onChapterExit: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+           {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 1,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0.2,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
+        },
+      ],
+    
+    },
+  
+     
+     // chapter 3c
+    {
+      id: 'chapter 3c',
+      alignment: 'left',
+      hidden: false,
+      title: ' ',
+      description: "A quarry in <b>2014</b> measuring 0.5 ha.<br/><br/>Source: Planet Labs PBC",
+
+        location: {
+        center: [75.862938, 11.50543],
+        zoom: 15.8,
+        pitch: 0,
+        bearing: 0,
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      onChapterEnter: [
+        {
+          layer: 'OneQuarries',
+          opacity: 1,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 1,
+        },
+      ],
+        onChapterExit: [
+              {
+          layer: 'OneQuarries',
+          opacity: 1,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+           {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 1,
+        },
+      ],
+    
+    },
+    
+    
+     // chapter 3d
+    {
+      id: 'chapter 3d',
+      alignment: 'left',
+      hidden: false,
+      title: ' ',
+      description: "By <b>2021</b>, two separate quarries had emerged, together covering about 5 ha.<br/><br/>Source: Mapbox Satellite",
+        location: {
+        center: [75.862938, 11.50543],
+        zoom: 15.8,
+        pitch: 0,
+        bearing: 0,
+      },
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      onChapterEnter: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
+        },
+      ],
+        onChapterExit: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 1,
+        },
+           {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 0,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 0,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 0,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
+        },
+      ],
+    
+    },
+  
+  
+    // chapter 4
+    {
+      id: 'chapter 4',
+      alignment: 'left',
+      hidden: false,
+      title: ' ',
+      description: "The <b>Silent Valley National Park</b>, home to the endangered lion-tailed macaque, has three quarries just 4 kilometres from its boundary.",
+           legend: [
+        {
+          title: 'Legal sand quarries',
+          fromLayer: 'Kerela_quarries',
+        },
+        {
+          title: 'Protected Areas',
+          fromLayer: 'Kerela_PAs',
+        },
+         ],
+      location: {
+        center: [76.4542, 11.1527],
+        zoom: 10.25,
+        pitch: 70.0,
+        bearing: 60,
+      },
+       images: [
+        {
+          src: 'photo3a.jpg',
+          position: 'top',
+          title: 'Lion-tailed macaque',
+          author: '',
+        },
+           ],
+      mapAnimation: 'flyTo',
+      rotateAnimation: false,
+      onChapterEnter: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+          {
+          layer: 'Kerela_PAs_Text',
+          opacity: 1,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.2,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 1,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0.75,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 1,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
+        },
+      ],
+        onChapterExit: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+                  {
+          layer: 'Kerela_PAs_Text',
+          opacity: 1,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.2,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 1,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0.75,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 1,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
+        },
+      ],
+    
+    },
+   
+      
+    // chapter 5
+    {
+      id: 'chapter 5',
+      alignment: 'left',
+      hidden: false,
+      title: ' ',
+      description: "Some protected areas, such as the <b>Aralam Wildlife Sanctuary</b>, have quarries 1 kilometre from their boundary. Blasting increases noise and dust pollution, posing risks to both wildlife and humans.",
       legend: [
         {
-          title: 'Placeholder text',
-          color: '#66f7ff',
+          title: 'Legal sand quarries',
+          fromLayer: 'Kerela_quarries',
         },
-      ],
-      sources: "Placeholder text",
+        {
+          title: 'Protected Areas',
+          fromLayer: 'Kerela_PAs',
+        },
+         ],
       location: {
-        center: [77.20, 10.75],
-        zoom: 4.5,
-        pitch: 60.0,
-        bearing: 30,
+        center: [75.90, 12.01],
+         zoom: 10.25,
+        pitch: 70.0,
+        bearing: 90,
       },
-      mapAnimation: 'flyTo',
-      rotateAnimation: false,
-      callback: '',
-      onChapterEnter: [
+        images: [
         {
-          layer: 'deforestationthreeregions-dcthbg',
-          opacity: 0,
-        },
-        {
-          layer: 'coca-crops-density-20241002t1-55l40t',
-          opacity: 0,
-        },
-        {
-          layer: 'concesiones-forestales-10-432-dulhn7 copy 2',
-          opacity: 0.75,
-        },
-        {
-          layer: 'concesiones-forestales-10-432-dulhn7 copy 1',
-          opacity: 0.75,
-        },
-        {
-          layer: 'territorios-indigenas-0lu5ni copy',
-          opacity: 0,
-        },
-      ],
-      onChapterExit: [],
-    },
-    {
-      id: 'ninth-chapter',
-      alignment: 'right',
-      hidden: false,
-      title: 'Placeholder text',
-      images: [
-        {
-          src: 'Photo1.jpg',
+          src: 'photo4.jpg',
           position: 'top',
-          title: 'Placeholder text',
-          author: 'Placeholder text',
+          title: 'Aralam Wildlife Sanctuary',
+          author: '',
         },
-      ],
-      description:
-        'Placeholder text.',
-      location: {
-        center: [77.20, 10.75],
-        zoom: 5.5,
-        pitch: 20.0,
-        bearing: 40,
-      },
+           ],
       mapAnimation: 'flyTo',
       rotateAnimation: false,
-      callback: '',
       onChapterEnter: [
-        {
-          layer: 'deforestationthreeregions-dcthbg',
+              {
+          layer: 'OneQuarries',
           opacity: 0,
         },
         {
-          layer: 'coca-crops-density-20241002t1-55l40t',
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+                {
+          layer: 'Kerela_PAs_Text',
+          opacity: 1,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.2,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 1,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
           opacity: 0.75,
         },
         {
-          layer: 'concesiones-forestales-10-432-dulhn7 copy 2',
-          opacity: 0.75,
+          layer: 'Western Ghats Line',
+          opacity: 1,
         },
         {
-          layer: 'concesiones-forestales-10-432-dulhn7 copy 1',
-          opacity: 0.75,
+          layer: 'Western Ghats Solid',
+          opacity: 0,
         },
         {
-          layer: 'territorios-indigenas-0lu5ni copy',
+          layer: 'kerala-line',
+          opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
           opacity: 0,
         },
       ],
-      onChapterExit: [],
+        onChapterExit: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
+        {
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+                  {
+          layer: 'Kerela_PAs_Text',
+          opacity: 1,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.2,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 1,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0.75,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 1,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
+        },
+      ],
     },
+       
+ 
+ // chapter 6
     {
-      id: 'tenth-identifier',
-      alignment: 'fully',
+      id: 'chapter 6',
+      alignment: 'left',
       hidden: false,
-      title: 'Rivers and roads',
-      images: [
-        {
-          src: 'Photo1.jpg',
-          position: 'top',
-          title: 'Placeholder text',
-          author: 'Placeholder text',
-        },
-      ],
-      description:
-        'Placeholder text.',
-      location: {
-        center: [77.20, 10.15],
-        zoom: 6.5,
-        pitch: 20.0,
-        bearing: 30,
+      title: ' ',
+      description: "This story, based on the study by Ashok L, <i>et al.</i> (2025), doesn’t factor in illegal quarrying in the Western Ghats.",
+     location: {
+        center: [76.0, 10.25],
+        zoom: 7.0,
+        pitch: 5.0,
+        bearing: 0,
       },
+   images: [
+        {
+          src: 'Graph.jpg',
+          position: 'top',
+          title: 'Rise in quarrying',
+          author: ' ',
+        },
+           ],      
       mapAnimation: 'flyTo',
       rotateAnimation: false,
-      callback: '',
       onChapterEnter: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
         {
-          layer: 'coca-crops-density-20241002t1-55l40t',
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+          {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
           opacity: 1,
         },
         {
-          layer: 'airstrips-10224-dozgmq',
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.2,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
           opacity: 1,
         },
         {
-          layer: 'concesiones-forestales-10-432-dulhn7 copy 2',
+          layer: 'admin-0-boundary-a',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
           opacity: 0.75,
         },
         {
-          layer: 'concesiones-forestales-10-432-dulhn7 copy 1',
-          opacity: 0.75,
+          layer: 'Western Ghats Line',
+          opacity: 1,
         },
         {
-          layer: 'territorios-indigenas-0lu5ni copy',
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
           opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
+          opacity: 0,
         },
       ],
-      onChapterExit: [
+        onChapterExit: [
+              {
+          layer: 'OneQuarries',
+          opacity: 0,
+        },
         {
-          layer: 'coca-crops-density-20241002t1-55l40t',
+          layer: 'TwoQuarries',
+          opacity: 0,
+        },
+           {
+          layer: 'Kerela_PAs_Text',
+          opacity: 0,
+        },
+         {
+          layer: 'Kerela_quarries',
+          opacity: 1,
+        },
+        {
+          layer: 'Distance_lines',
+          opacity: 0,
+        },
+        {
+          layer: 'waterway',
+          opacity: 0.2,
+        },
+        {
+          layer: 'admin-0-boundary-disputed',
+          opacity: 1,
+        },
+        {
+          layer: 'admin-0-boundary-a',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_PAs',
+          opacity: 0.75,
+        },
+        {
+          layer: 'Western Ghats Line',
+          opacity: 1,
+        },
+        {
+          layer: 'Western Ghats Solid',
+          opacity: 0,
+        },
+        {
+          layer: 'kerala-line',
+          opacity: 1,
+        },
+        {
+          layer: 'kerala-solid',
+          opacity: 0.25,
+        },
+        {
+          layer: 'admin-0-boundary-b',
+          opacity: 1,
+        },
+        {
+          layer: 'Kerela_2014',
           opacity: 0,
         },
       ],
     },
+
+   
+
   ],
 };
