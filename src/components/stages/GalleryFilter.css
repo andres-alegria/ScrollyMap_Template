@@ -101,7 +101,6 @@ label {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  color: yellow;
   width: 200px;
   height: 150px;
   margin: 5px;
@@ -127,7 +126,7 @@ label {
 
 .tag-button {
   align-items: center;
-  border: 1.5px solid red;
+  border: 1.5px solid #006A54; /* Emerald Green */
   border-radius: 99px;
   cursor: pointer;
   display: flex;
@@ -149,13 +148,13 @@ label {
 
 .tag-button .checked {
   opacity: 0;
-  border: 1.5px solid red;
+  border: 1.5px solid #006A54; /* Emerald Green */
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: red;
+  background-color: #006A54; /* Emerald Green pill + white text (light bg), per brand guideline */
   border-radius: 99px;
-  color: white;
+  color: #FCFCFC;
   display: flex;
   justify-content: center;
   align-items: center;
