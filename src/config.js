@@ -1,11 +1,15 @@
 const { VITE_MAPBOX_ACCESS_TOKEN } = import.meta.env;
 
-// This config.js is a working demo covering every feature of the template:
-// every camera mode, the track-animation engine (with an SVG marker), and
-// every stage type. Replace the content below with your own story — the
-// schema (chapters, legend, onChapterEnter/Exit, stages) stays the same.
+// This config.js is a working demo covering the core features of the
+// template: every camera mode and every stage type. Replace the content
+// below with your own story — the schema (chapters, legend,
+// onChapterEnter/Exit, stages) stays the same. The optional track-animation
+// engine (drawing a line with a moving marker) still lives in
+// map-component.jsx and can be re-enabled per chapter via
+// onChapterEnter -> { callback: 'trackAnimation.start', options: {...} } —
+// see the README for the full options reference.
 export default {
-  style: 'mapbox://styles/mongabay/cmktmslps004z01se8n68atf5',
+  style: 'mapbox://styles/mapbox/light-v11',
 
   accessToken: VITE_MAPBOX_ACCESS_TOKEN,
 
@@ -113,32 +117,13 @@ export default {
     },
 
     {
-      id: 'TrackAnimation',
+      id: 'JumpToImage',
       alignment: 'right',
-      title: 'Track animation',
-      description:
-        'The optional track-animation engine, drawing a line progressively with a rotating SVG marker at its head.',
-      location: { center: [-15, 1], zoom: 3.5, pitch: 0, bearing: 0 },
-      onChapterEnter: [
-        {
-          callback: 'trackAnimation.start',
-          options: {
-            trackFile: '/data/tracks/demo-track.geojson',
-            speed: 2,
-            camera: 'chapter',
-            line: { color: '#03755e', width: 3, opacity: 0.9 },
-            marker: {
-              type: 'svg',
-              svg: '/demo-marker.svg',
-              size: 1.5,
-              color: '#03755e',
-              borderColor: '#ffffff',
-              borderWidth: 2,
-            },
-          },
-        },
-      ],
-      onChapterExit: [{ callback: 'trackAnimation.resume' }],
+      title: 'A chapter with an image',
+      description: 'The same small side box as flyTo/easeTo/jumpTo, this time with a placeholder image.',
+      location: { center: [-60, -5], zoom: 3, pitch: 0, bearing: 0 },
+      mapAnimation: 'flyTo',
+      image: '/demo-placeholder.svg',
     },
 
     {
