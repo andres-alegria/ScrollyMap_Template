@@ -109,12 +109,12 @@ const StageComponent = isStage ? STAGES[stage] : null;
   );
   const classList = id === currentChapterId ? `${stepClasses} active` : stepClasses;
   const renderImage = (img) => (
-    <figure key={img.src} className="relative p-1">
+    <figure key={img.src} className="relative">
       <img
         key={img.src}
         src={img.src}
         alt={img.alt || img.title || ''}
-        className={cx('image w-full', { 'p-10': !img.title })}
+        className="image w-full aspect-square object-cover"
       />
       {img.title && (
         <figcaption
