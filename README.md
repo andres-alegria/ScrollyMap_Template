@@ -1,158 +1,141 @@
-# Layers-storytelling
+# ScrollyMap Template
 
-Integrates [Vizzuality's Layer manager](https://github.com/Vizzuality/layer-manager) with [mapbox/storytelling](https://github.com/mapbox/storytelling) to be able to display external layers
+A **clean, minimal scrollytelling map template** built with **React**, **Mapbox GL JS**, **react-map-gl**, and **GSAP**, bundled with **Vite**.
 
-The external layers have to be written in Layer Manager v3. Currently there is a parser implemented to also automatically convert resource-watch LM v2 layers into v3 but only for carto and raster layers.
+## Core Concepts
 
-## Examples
+### Chapters (config.js)
+The story is driven by `src/config.js`.
+Each chapter defines:
 
-[Amazon soy ports story](https://news.mongabay.com/2020/11/multiplying-amazon-river-ports-open-new-brazil-to-china-commodities-routes) - [Just the app](http://amazon-ports-storytelling.vercel.app)
+- Map position (center, zoom, pitch, bearing)
+- How the map should animate to that position
+- Optional callbacks triggered on chapter enter / exit
+- Optional media (images, captions)
 
+Example:
 
-## Instructions
+```js
+{
+  id: "chapter-01",
+  alignment: "right",
+  title: "Tracking a vessel",
+  description: "An animated track.",
 
-- Copy .env.template and rename it to .env
-- Add Mapbox [access token](https://docs.mapbox.com/help/glossary/access-token) to the new .env
-- Update config.js with the desired chapters, layers and mapbox style
-- External layers config should be specified on the map-external-layers.js file:
-  For resource-watch layers. There is an automated way to fetch the layers
-
-```
-
-  {
-    id: '0448c79d-0ee0-42ff-9331-aeee70cef301', // Id of the DATASET on resource watch
-    slug: 'tree-cover', // New slug to call the layer in config.js
-    source: 'resource-watch' // This is needed for resource-watch layers
-    //   decodeParams: ... // optional
-    //   decodeFunction: ... // optional
-  }
-```
-
-- Update index.html and manifest.json inside public folder to update title and SEO
-
-## Config
-  Images must be placed on public folder. Background intro image is intro.png. It can be removed to have a transparent intro background.
-
-  Definition of the chapter options on the config file:
-
-  ```
-  chapters: [
-      {
-        id: 'amazon-region', // Id of the mapbox or external layer
-        title: 'Turning the Amazon river into an industrial waterway', // Title of the chapter
-        intro: { // Add this to have an intro screen
-          title: 'Amazon Soy Ports', Title of the intro
-          date: 'Nov. 10 2020' Date of publishing
-          height: '1300' // optional - height of the intro screen. default: full screen
-          social: [
-            {
-              name: 'twitter',
-              src: 'twitter.svg',
-              href: 'https://twitter.com/mongabay'
-            }
-          ]
-        },
-        logos: [ // Array of logos to be shown on the bottom right of the screen
-          {
-            name: 'mongabay', // Name to add on the alt text
-            src: 'logos.png', // logo image in public folder
-            width: '200' // optional, size in pixels
-            href: 'www.mongabay.org' // optional, link to url
-          }
-        ],
-        images: [ // Array of images to be displayed on the chapter
-          { src: 'chapter1_legend.png', // File
-            position: 'top', // position of the image, top. before the text, bottom: after the text
-            title: 'legend', // Title in the image caption
-            author: 'Mongabay', // Author in the image caption
-          },
-          { src: 'chapter1_legend.png', position: 'bottom'}
-        ],
-        legend: [
-          {
-            title: 'Industrial port facilities in the Amazon basin',
-            color: '#7259A8',
-            border: 'black', // Not required. Default is none
-            type: 'circle' // Default is square
-          },
-          {
-            title: 'Soy Storage Facilities',
-            color: '#BAA4F5'
-          }
-        ],
-        sources: 'Sources: ANTAQ (Ports), Trase.earth (storage facilities)', // Sources line below the legend
-        description: // Main text of the chapter
-          'Brazil’s government has had major plans to exploit large portions of its 35,000-kilometers (22,000-miles) of waterways since the 1970s. But it was mostly privately funded projects that went ahead, with just a third of the nation’s navigable waterway potential now fulfilled.',
-        location: { // Start location
-          center: [-57.15869, -3.85456],
-          zoom: 4.70,
-          pitch: 43.50,
-          bearing: 54.23
-        },
-        onChapterEnter: [ // Layers and opacity to display on enter
-          {
-            layer: 'amazon-ports',
-            opacity: 1
-          },
-          {
-            layer: 'soy-storage-facilities',
-            opacity: 1
-          }
-        ],
-        onChapterExit: [ // Layers and opacity to display on exit
-        {
-          layer: 'soy-storage-facilities',
-          opacity: 0.3
-        }
-      ],
-    }
-```
-
-## Translations
-
-The app is using i18next and react-i18next npm packages.
-The text will be translated to the browser selected language.
-
-Define the translations in translations.js file on the root directory:
-
-You can have as many languages as you want just add all the keys with the selected [language code](https://www.w3schools.com/tags/ref_language_codes.asp) and pick every text displayed on the app as a key the translation as the value.
-
-E.g.
-
-```
-export default {
-  es: {
-    "Amazon Soy Ports": 'Puertos de soja en el Amazonas',
-    ...
+  location: {
+    center: [-158.067, -18.252],
+    zoom: 4.2,
+    pitch: 0,
+    bearing: 0,
   },
-  de: {
-    ...
-  }
-};
+  mapAnimation: "flyTo", // 'flyTo' | 'easeTo' | 'jumpTo'
+
+  onChapterEnter: [
+    {
+      callback: "trackAnimation.start",
+      options: {
+        trackFile: "/data/tracks/example.geojson",
+        speed: 5,
+        flyToStart: true
+      }
+    }
+  ]
+}
 ```
 
-## Iframe test
+### Map Animations
 
-You can enter /test folder and use some [simple server](https://www.npmjs.com/package/http-server)(https://www.npmjs.com/package/http-server) to test the application on an iframe
+Each chapter can control **how** the map moves using `mapAnimation`:
 
-## Installation and dependencies
+- `flyTo` – cinematic, animated movement (default)
+- `easeTo` – smoother, less dramatic motion
+- `jumpTo` – immediate jump (no animation)
 
-Install dependencies listed in the `package.json` file:
+These are implemented in `src/components/map/map-hooks.js`. Comments in that file explain exactly where to tweak behavior.
 
+## Stages (Non-Map Sections)
+
+In addition to map chapters, the template supports **Stages**: full-width sections that are not tied to map movement. Set `type: "stage"` and `stage: "<StageName>"` on a chapter to render one.
+
+Stages are registered in `src/components/stages/stage-registry.js`. Currently included:
+
+- `GalleryHorizontalScroll` — GSAP ScrollTrigger horizontal image strip. Takes an `items` prop (`[{ src, alt }]`).
+- `GalleryFilter` — GSAP Flip-based filterable gallery. Takes `filters` (`[{ id, label }]`) and `items` (`[{ id, category }]`).
+- `GalleryFlipImage` — horizontal gallery of flip-on-hover cards. Takes an `items` prop (`[{ title, image, body, href }]`).
+- `PlainText` — simple text block, no map interaction. Takes `html` (or `content`).
+- `PlainImage` — full-width (or constrained) image, with an optional `caption`.
+
+Each stage is self-contained (JS + CSS) and can use GSAP or any other animation logic internally. Stages are ideal for image sequences, data explanations, or visual breaks between map sections.
+
+Stage chapters get a shorter, tighter layout than map chapters automatically (`.step-stage` in `chapter.scss`) — pass `tight: true` on a stage chapter for an even more compact one.
+
+## Track Animation (Optional)
+
+The template includes an **optional animated track engine**, implemented inline in `src/components/map/map-component.jsx` (not a separate file). It:
+
+- Loads a GeoJSON LineString
+- Draws the line progressively
+- Moves a marker along the track — either a plain circle (default) or a rotating SVG icon
+- Optionally moves the camera
+
+The public API is exposed as:
+
+```js
+trackAnimation.start(options)
+trackAnimation.pause()
+trackAnimation.resume()
+trackAnimation.reset()
 ```
-yarn install
-```
 
-Run the development server:
+`start(options)` accepts:
 
-```
-yarn start
-```
+| Option | Type | Description |
+|---|---|---|
+| `trackFile` (or `vesselFile`) | string | Path to a GeoJSON file with LineString feature(s). Required. |
+| `speed` | number | How many points to advance per animation frame. |
+| `camera` | `"chapter"` \| `"static"` \| `"start"` \| `"fit"` | Who controls the camera while the track plays. `"chapter"` (default) leaves it to the chapter's own `location`. |
+| `cameraPadding` | number | Padding (px) used by `camera: "fit"`. |
+| `flyToStart` | boolean | Override for the `"start"` camera behavior. |
+| `restart` | boolean | Force reloading and restarting from the beginning. |
+| `line` | `{ color, width, opacity }` | Styles the drawn track line. |
+| `marker` | `{ type: "svg", svg, size, color, borderColor, borderWidth, rotate }` | If provided, the track head renders as a rotating SVG marker instead of the default circle. `svg` is a path to an `.svg` file; `rotate` is a static degree offset added to the computed heading of travel. |
 
-Follow the instructions above for setting up your configuration file and building out your story. Once the application is ready for deployment, run:
+If you don't need track animation for a given chapter, just don't call `trackAnimation.start` from it — the engine is inert until invoked.
 
-```
-yarn build
-```
+## External Layers (Optional)
 
-This command will generate a `build` directory that contains everything you will need to deploy your story.
+External vector or raster layers (e.g. Resource Watch datasets) can be defined in `src/components/map/map-external-layers.js`. This is intentionally kept simple and empty by default — only enable it when you actually need external data sources.
+
+## Environment Setup
+
+1. Copy the environment template:
+   ```bash
+   cp .env.template .env
+   ```
+
+2. Add your Mapbox access token:
+   ```
+   VITE_MAPBOX_ACCESS_TOKEN=your_token_here
+   ```
+
+3. Install dependencies:
+   ```bash
+   yarn install
+   ```
+
+4. Start the development server:
+   ```bash
+   yarn dev
+   ```
+
+5. Build for production:
+   ```bash
+   yarn build
+   yarn preview   # serve the production build locally
+   ```
+
+## Stack notes
+
+- **React 18** — deliberately not React 19 yet: `react-waypoint` (used for chapter enter/leave detection) relies on `findDOMNode`, which React 19 removes. A future cleanup could replace `react-waypoint` with a small custom `IntersectionObserver` hook to unblock a React 19 upgrade.
+- **Tailwind v4** — configured CSS-first via `@theme` in `src/index.css` rather than `tailwind.config.js`.
+- Every component file is `.jsx` — if you add a new component, use the `.jsx` extension so Vite's default JSX handling picks it up.

@@ -1,7 +1,8 @@
 .intro {
-  background-image: url('../../../public/intro.png');
+  // Root-relative path into public/ — swap for a story-specific image per project.
+  background-image: url('/intro.png');
+  background-size: cover;
   max-height: 100vh;
-  background-position: center center;
 }
 
 .title {
