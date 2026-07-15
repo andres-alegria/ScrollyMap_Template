@@ -8,13 +8,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Generic, network-free placeholder items (no real photography needed to
 // demo this stage — swap `items` for real images in your own config.js).
+// Colors are the "dark" tone from each family in Mongabay's secondary
+// (editorial/topic) palette — see the mongabay-brand skill for the full set.
 const DEFAULT_ITEMS = [
-  { label: "Demo image 1", hue: 200 },
-  { label: "Demo image 2", hue: 260 },
-  { label: "Demo image 3", hue: 320 },
-  { label: "Demo image 4", hue: 20 },
-  { label: "Demo image 5", hue: 80 },
-  { label: "Demo image 6", hue: 140 },
+  { label: "Demo image 1", color: "#123940" }, // Blue
+  { label: "Demo image 2", color: "#384E21" }, // Green
+  { label: "Demo image 3", color: "#6F6A0F" }, // Yellow
+  { label: "Demo image 4", color: "#4C2F1F" }, // Orange
+  { label: "Demo image 5", color: "#530E0D" }, // Red
+  { label: "Demo image 6", color: "#4B283C" }, // Purple
 ];
 
 export default function GalleryHorizontalScroll({ items }) {
@@ -93,7 +95,7 @@ export default function GalleryHorizontalScroll({ items }) {
                   ) : (
                     <div
                       className="project-placeholder"
-                      style={{ background: `hsl(${item.hue ?? i * 45}, 55%, 45%)` }}
+                      style={{ background: item.color || "#092F29" }}
                     >
                       {item.label || `Demo image ${i + 1}`}
                     </div>

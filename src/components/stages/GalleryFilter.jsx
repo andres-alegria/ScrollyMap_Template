@@ -9,18 +9,20 @@ gsap.registerPlugin(ScrollTrigger, Flip);
 
 // Generic, network-free demo data (no real photography needed to demo this
 // stage — swap `filters`/`items` for real categories/images in config.js).
+// Colors are the "mid" tone from three families in Mongabay's secondary
+// (editorial/topic) palette — see the mongabay-brand skill for the full set.
 const DEFAULT_FILTERS = [
   { id: "CategoryA", label: "Category A" },
   { id: "CategoryB", label: "Category B" },
   { id: "CategoryC", label: "Category C" },
 ];
 const DEFAULT_ITEMS = [
-  { id: "item-1", category: "CategoryA", hue: 200 },
-  { id: "item-2", category: "CategoryA", hue: 210 },
-  { id: "item-3", category: "CategoryB", hue: 260 },
-  { id: "item-4", category: "CategoryB", hue: 270 },
-  { id: "item-5", category: "CategoryC", hue: 320 },
-  { id: "item-6", category: "CategoryC", hue: 330 },
+  { id: "item-1", category: "CategoryA", color: "#74ADB3" }, // Blue mid
+  { id: "item-2", category: "CategoryA", color: "#123940" }, // Blue dark
+  { id: "item-3", category: "CategoryB", color: "#C9D04D" }, // Green mid
+  { id: "item-4", category: "CategoryB", color: "#384E21" }, // Green dark
+  { id: "item-5", category: "CategoryC", color: "#E8A643" }, // Orange mid
+  { id: "item-6", category: "CategoryC", color: "#4C2F1F" }, // Orange dark
 ];
 
 export default function GalleryFilter({ filters, items, heading }) {
@@ -127,7 +129,7 @@ export default function GalleryFilter({ filters, items, heading }) {
               style={
                 item.src
                   ? { backgroundImage: `url('${item.src}')` }
-                  : { background: `hsl(${item.hue ?? 200}, 55%, 45%)` }
+                  : { background: item.color || "#092F29" }
               }
             />
           ))}
