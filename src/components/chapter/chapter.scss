@@ -5,11 +5,23 @@
 
 .step {
   padding-bottom: 50vh;
-  min-height: 120vh; 
+  min-height: 120vh;
 }
 
 .step.active {
   opacity: 0.95;
+}
+
+// Stage chapters (galleries, plain text/image) don't need the same tall
+// scroll runway as a map chapter — give them a shorter, tighter footprint.
+.step.step-stage {
+  padding-bottom: 0;
+  min-height: 70vh;
+}
+
+.step.step--tight {
+  min-height: auto;
+  padding-bottom: 10vh;
 }
 
 .m-left-chapter {

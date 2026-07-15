@@ -1,7 +1,9 @@
 .intro {
-  background-image: url('../../../public/intro.png');
+  // Generic placeholder — swap for a real story image per project
+  // (root-relative path into public/, e.g. url('/intro.png')).
+  background-image: url('/demo-placeholder.svg');
+  background-size: cover;
   max-height: 100vh;
-  background-position: center center;
 }
 
 .title {

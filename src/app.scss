@@ -14,15 +14,33 @@ a:visited {
   color: #0071bc;
 }
 
-.mapboxgl-map {
+// Note: deliberately NOT named .mapboxgl-map — that class is also used
+// internally by Mapbox GL JS's own stylesheet (mapbox-gl.css) for its map
+// container, and importing that stylesheet after this one would silently
+// override position: fixed with its own position: relative.
+.map-container {
   top: 0;
   height: 100vh;
   width: 100vw;
   position: fixed;
   z-index: -5;
 }
-.mapboxgl-ctrl-attrib-button {
-  display: none;
+// Keep Mapbox/OSM attribution visible (required by Mapbox's terms of service)
+// but small and unobtrusive, rather than hiding it outright.
+.mapboxgl-ctrl-attrib {
+  opacity: 0.8;
+  font-size: 8px;
+  background: transparent;
+}
+
+.track-marker {
+  display: flex;
+  filter: drop-shadow(0 0 var(--marker-border-width, 2px) var(--marker-border-color, #fff));
+}
+.track-marker svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
 }
 
 #header {
